@@ -1,0 +1,18 @@
+<form action="/register" method="post">
+  {{#if error}}
+    <p>{{error}}</p>
+  {{/if}}
+  <label>
+    Full Name:
+    <input type="text" name="fullname">
+  </label>
+  <label>
+    Email:
+    <input type="text" name="email">
+  </label>
+  <label>
+    Password:
+    <input type="password" name="password">
+  </label>
+  <button type="submit">Login</button>
+</form>
