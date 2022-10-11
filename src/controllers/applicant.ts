@@ -80,8 +80,14 @@ router.post("/create", async (req, res) => {
 			res.redirect("/applicant/create");
 			return;
 		}
+
+		// redirect to applicant page
+		res.redirect("/applicant");
 	} catch (error) {
+		// if creation is unsuccessful redirect to create page
 		res.redirect("/applicant/create");
+
+		// log error
 		console.log(error);
 	}
 });
