@@ -6,7 +6,7 @@
 	"scripts": {
 		"compile": "tsc",
 		"migrate": "npx prisma migrate dev",
-		"seed": "node dist dist/util/seed.js",
+		"seed": "node dist/util/seed.js",
 		"start": "node dist/index.js",
 		"start:prod": "node dist/index.js",
 		"compile:dev": "tsc -w",
