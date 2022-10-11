@@ -8,8 +8,8 @@ Getting started
 - in the .env file change the localhost to ip if its needed for docker of ofsite database
 - in root of folder run in terminal the following commands:
   - npm i
-  - npm run compile
   - npm run migrate
+  - npm run compile
   - npm run seed
   - npm run start
 - you can ctrl click the [server] Running on http://localhost:3000/ to open in browser
