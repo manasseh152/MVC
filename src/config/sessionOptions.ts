@@ -1,7 +1,6 @@
 // Import all node modules
 import { SessionOptions } from "express-session";
 // import { PrismaSessionStore } from "@quixo3/prisma-session-store";
-import { Role } from "@prisma/client";
 
 // Export session options as a function
 export default function sessionOptions(
@@ -28,7 +27,7 @@ declare module "express-session" {
 			id: string;
 			fullname: string;
 			email: string;
-			role: Role;
+			role: string;
 		};
 	}
 }

@@ -2,7 +2,7 @@ import { Router } from "express";
 const router = Router();
 
 router.get("/", (_, res) => {
-	res.send("Dashboard");
+	res.render("index", { title: "Express" });
 });
 
 router.post("/", (req, res) => {

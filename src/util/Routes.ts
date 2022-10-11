@@ -49,7 +49,7 @@ class Routes {
 	}
 
 	public getRoutesArry() {
-		this.getRoutes(cwd() + "/dist/routes");
+		this.getRoutes(cwd() + "/dist/controllers");
 		return this.routes;
 	}
 

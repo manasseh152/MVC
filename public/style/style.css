@@ -1,0 +1,9 @@
+label {
+	display: flex;
+	flex-direction: column;
+}
+
+tr > * {
+	padding: 0.5rem;
+	border: 1px solid black;
+}

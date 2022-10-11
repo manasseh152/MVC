@@ -1,0 +1,79 @@
+<main>
+	{{#if data}}
+		<h2>Update applicant</h2>
+		<form action="/applicant/update/{{data.id}}" method="post">
+			<label>
+				Applicant Number:
+				<input
+					type="text"
+					name="applicantNumber"
+					value="{{data.applicantNumber}}"
+				/>
+			</label>
+			<label>
+				Gender:
+				<input type="text" name="gender" value="{{data.gender}}" />
+			</label>
+			<label>
+				Title:
+				<input type="text" name="title" value="{{data.title}}" />
+			</label>
+			<label>
+				First Name:
+				<input type="text" name="firstName" value="{{data.firstName}}" />
+			</label>
+			<label>
+				Last Name:
+				<input type="text" name="lastName" value="{{data.lastName}}" />
+			</label>
+			<label>
+				Nick Name:
+				<input type="text" name="nickName" value="{{data.nickName}}" />
+			</label>
+			<label>
+				Birth Date:
+				<input
+					type="datetime-local"
+					name="birthDate"
+					value="{{data.birthDate}}"
+				/>
+			</label>
+			<label>
+				Street:
+				<input type="text" name="street" value="{{data.street}}" />
+			</label>
+			<label>
+				Number:
+				<input type="text" name="number" value="{{data.number}}" />
+			</label>
+			<label>
+				Number Extension:
+				<input
+					type="text"
+					name="numberExtension"
+					value="{{data.numberExtension}}"
+				/>
+			</label>
+			<label>
+				Zip Code:
+				<input type="text" name="zipCode" value="{{data.zipCode}}" />
+			</label>
+			<label>
+				Place:
+				<input type="text" name="place" value="{{data.place}}" />
+			</label>
+			<label>
+				Applicant Key:
+				<input type="text" name="applicantkey" value="{{data.applicantkey}}" />
+			</label>
+			<label>
+				Description:
+				<input type="text" name="description" value="{{data.description}}" />
+			</label>
+			<br />
+			<button type="submit">Update</button>
+		</form>
+	{{else}}
+		<h2>Applicant not found</h2>
+	{{/if}}
+</main>
