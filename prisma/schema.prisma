@@ -10,18 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Role {
-  ADMIN
-  USER
-}
-
-model Session {
-  id        String   @id
-  sid       String   @unique
-  data      String
-  expiresAt DateTime
-}
-
 model Applicant {
   id              Int      @id @default(autoincrement())
   applicantNumber String   @unique
@@ -41,15 +29,4 @@ model Applicant {
   description     String   @default("")
   dateCreated     DateTime @default(now())
   dateModified    DateTime @updatedAt
-}
-
-model Country {
-  id           String   @id @default(uuid())
-  name         String
-  capital      String
-  continent    String
-  inhabitants  Int
-  code         String
-  dateCreated  DateTime @default(now())
-  dateModified DateTime @updatedAt
 }
