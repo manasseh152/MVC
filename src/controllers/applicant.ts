@@ -96,7 +96,7 @@ router.get("/update/:id", async (req, res) => {
 	const { id } = req.params;
 	try {
 		const applicant = await prisma.applicant.findUnique({
-			where: { id: parseInt(id) },
+			where: { id },
 		});
 		if (!applicant) {
 			res.status(400).json({ message: "Something went wrong" });
@@ -157,7 +157,7 @@ router.post("/update/:id", async (req, res) => {
 	try {
 		// updating the applicant
 		const applicant = await prisma.applicant.update({
-			where: { id: parseInt(id) },
+			where: { id },
 			data: {
 				applicantNumber,
 				gender,
@@ -199,7 +199,7 @@ router.get("/delete/:id", async (req, res) => {
 	try {
 		// deleting the applicant
 		const applicant = await prisma.applicant.delete({
-			where: { id: parseInt(id) },
+			where: { id },
 		});
 
 		// if the applicant is not found it will throw an error and return
@@ -218,3 +218,4 @@ router.get("/delete/:id", async (req, res) => {
 });
 
 export default router;
+
