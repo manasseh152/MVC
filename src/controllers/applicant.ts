@@ -44,7 +44,6 @@ router.post("/create", async (req, res) => {
 		!birthDate ||
 		!street ||
 		!number ||
-		!numberExtension ||
 		!zipCode ||
 		!place ||
 		!applicantkey
@@ -145,7 +144,6 @@ router.post("/update/:id", async (req, res) => {
 		!birthDate ||
 		!street ||
 		!number ||
-		!numberExtension ||
 		!zipCode ||
 		!place ||
 		!applicantkey
