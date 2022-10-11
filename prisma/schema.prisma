@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Applicant {
-  id              Int      @id @default(autoincrement())
+  id              String   @id @default(cuid)
   applicantNumber String   @unique
   gender          String
   title           String   @default("")
