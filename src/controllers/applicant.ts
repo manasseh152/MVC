@@ -13,8 +13,9 @@ router.get("/create", (_, res) => {
 	res.render("applicant-create", { title: "applicant" });
 });
 
+// create applicant
 router.post("/create", async (req, res) => {
-	// {"applicantNumber":"333161","gender":"Man","title":"Student","firstName":"manasseh","lastName":"stam","nickName":"manasseh","birthDate":"2022-10-05T16:33","street":"Rivierdijk","number":"656","numberExtension":"+31","zipCode":"3371EG","place":"Hardinxveld-Gissendam","applicantkey":"333161","description":"yes sir"}
+	// get data from form
 	const {
 		applicantNumber,
 		gender,
@@ -31,6 +32,8 @@ router.post("/create", async (req, res) => {
 		applicantkey,
 		description,
 	} = req.body;
+
+	// check if every field is filled in
 	if (
 		!applicantNumber ||
 		!gender ||
@@ -44,13 +47,14 @@ router.post("/create", async (req, res) => {
 		!numberExtension ||
 		!zipCode ||
 		!place ||
-		!applicantkey ||
-		!description
+		!applicantkey
 	) {
 		res.status(400).json({ message: "Please fill in all fields" });
 		return;
 	}
+
 	try {
+		// create applicant
 		const applicant = await prisma.applicant.create({
 			data: {
 				applicantNumber,
@@ -69,17 +73,20 @@ router.post("/create", async (req, res) => {
 				description,
 			},
 		});
+
+		// if creation is unsuccessful redirect to create page
 		if (!applicant) {
-			res.status(400).json({ message: "Something went wrong" });
+			// res.status(400).json({ message: "Something went wrong" });
+			res.redirect("/applicant/create");
 			return;
 		}
-		res.redirect("/applicant");
 	} catch (error) {
-		res.status(400).json({ error });
+		res.redirect("/applicant/create");
 		console.log(error);
 	}
 });
 
+// update applicant page
 router.get("/update/:id", async (req, res) => {
 	const { id } = req.params;
 	try {
@@ -93,12 +100,17 @@ router.get("/update/:id", async (req, res) => {
 		res.render("applicant-update", { title: "applicant", data: applicant });
 	} catch (error) {
 		res.status(400).json({ error });
+		res.redirect("/applicant");
 		console.log(error);
 	}
 });
 
+// update Route
 router.post("/update/:id", async (req, res) => {
+	// gettting the id from the url
 	const { id } = req.params;
+
+	// getting all the data from the post request body
 	const {
 		applicantNumber,
 		gender,
@@ -115,6 +127,8 @@ router.post("/update/:id", async (req, res) => {
 		applicantkey,
 		description,
 	} = req.body;
+
+	// checking if all the fields are filled in
 	if (
 		!applicantNumber ||
 		!gender ||
@@ -128,13 +142,16 @@ router.post("/update/:id", async (req, res) => {
 		!numberExtension ||
 		!zipCode ||
 		!place ||
-		!applicantkey ||
-		!description
+		!applicantkey
 	) {
 		res.status(400).json({ message: "Please fill in all fields" });
 		return;
 	}
+
+	// updating the applicant
+	// if the applicant is not found it will throw an error
 	try {
+		// updating the applicant
 		const applicant = await prisma.applicant.update({
 			where: { id: parseInt(id) },
 			data: {
@@ -154,29 +171,43 @@ router.post("/update/:id", async (req, res) => {
 				description,
 			},
 		});
+
+		// if the applicant is not found it will throw an error and return
 		if (!applicant) {
 			res.status(400).json({ message: "Something went wrong" });
 			return;
 		}
+
+		// redirecting to the applicant page if everything went well
 		res.redirect("/applicant");
 	} catch (error) {
+		// if there is an error it will return the error
 		res.status(400).json({ error });
 		console.log(error);
 	}
 });
 
+// delete Route
 router.get("/delete/:id", async (req, res) => {
+	// getting the id from the url
 	const { id } = req.params;
+
 	try {
+		// deleting the applicant
 		const applicant = await prisma.applicant.delete({
 			where: { id: parseInt(id) },
 		});
+
+		// if the applicant is not found it will throw an error and return
 		if (!applicant) {
 			res.status(400).json({ message: "Something went wrong" });
 			return;
 		}
+
+		// redirecting to the applicant page if everything went well
 		res.redirect("/applicant");
 	} catch (error) {
+		// if there is an error it will return the error
 		res.status(400).json({ error });
 		console.log(error);
 	}
